@@ -2,6 +2,8 @@ import { getAuthSession } from "@/lib/nextauth";
 import Link from "next/link";
 import React from "react";
 import SingInButton from "./SingInButton";
+import UserAccountNav from "./UserAccountNav";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface Props {}
 
@@ -19,8 +21,10 @@ const Navbar = async (props: Props) => {
           </p>
         </Link>
         <div className="flex items-center">
+          <ThemeToggle />
+
           {session?.user ? (
-            <h1>Welcome {session.user.name}</h1>
+            <UserAccountNav user={session.user} />
           ) : (
             <SingInButton text={"Sign In"} />
           )}
